@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Seed Audio 音频创作</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">音频创作</p>
+    <h1>Seed Audio 1.0 音频创作</h1>
+    <p>接入火山引擎 Seed Audio 1.0 模型，支持多角色对话、旁白配音、拟真环境音效与音乐创作。使用您自己的调用额度。</p>
+  </header>
+
+  <section class="card settings">
+    <label for="key">API 密钥 (API Key)</label>
+    <div class="row">
+      <input type="password" id="key" autocomplete="off" placeholder="输入 API Key，安全保存在系统凭据库">
+      <button id="save-key">保存密钥</button>
+      <button id="clear-key" class="secondary">清除密钥</button>
+    </div>
+    <p id="key-status" role="status">正在检查密钥状态…</p>
+  </section>
+
+  <section class="card">
+    <div class="form-group">
+      <label for="prompt">音频创作描述 / 提示词</label>
+      <textarea id="prompt" placeholder="描述台词文本、人声语气或场景音效（例如：“一位年轻女性用温和、亲切的语气播报：欢迎来到轻作创作中心”，或“静谧的森林早晨，鸟鸣声与微风吹拂树叶的声音交互”）"></textarea>
+    </div>
+
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="format">音频格式</label>
+        <select id="format">
+          <option value="mp3" selected>MP3 (体积小、通用兼容)</option>
+          <option value="wav">WAV (无损音质)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="sample-rate">采样率</label>
+        <select id="sample-rate">
+          <option value="48000" selected>48,000 Hz (工作室音质)</option>
+          <option value="24000">24,000 Hz (标准)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="speech-rate">语速调节</label>
+        <select id="speech-rate">
+          <option value="0" selected>正常语速 (0)</option>
+          <option value="20">稍快 (+20%)</option>
+          <option value="50">快速 (+50%)</option>
+          <option value="-20">稍慢 (-20%)</option>
+          <option value="-50">慢速 (-50%)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="pitch-rate">音调调节</label>
+        <select id="pitch-rate">
+          <option value="0" selected>正常音调 (0)</option>
+          <option value="20">偏高 (+20%)</option>
+          <option value="-20">偏低 (-20%)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="run">开始创作音频</button>
+      <button id="cancel" class="secondary" disabled>取消</button>
+      <button id="save-audio" class="secondary" disabled>保存音频文件</button>
+    </div>
+    <p id="status" role="status">请配置 API 密钥并输入提示词后开始创作。</p>
+  </section>
+
+  <section class="card">
+    <label>音频试听</label>
+    <div class="audio-player-box">
+      <audio id="audio-result" controls hidden></audio>
+      <div id="preview-placeholder" class="preview-placeholder">创作完成后即可在此在线试听音频</div>
+    </div>
+  </section>
+</main>
+<script type="module" src="app.mjs"></script>
+</body>
+</html>
